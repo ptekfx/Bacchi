@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Best Friend Day, Bacchi 💛</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #fdf6ec;
+    --warm: #f5e6c8;
+    --gold: #d4a843;
+    --deep: #2c1a0e;
+    --rust: #c0622a;
+    --blush: #f0c4a0;
+    --ink: #3a2410;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── FLOATING HEARTS ── */
+  .hearts-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .heart {
+    position: absolute;
+    bottom: -60px;
+    font-size: 1.4rem;
+    opacity: 0;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(-15deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+    background: radial-gradient(ellipse at 50% 0%, #f7e8cc 0%, var(--cream) 70%);
+  }
+
+  .hero-badge {
+    font-family: 'Caveat', cursive;
+    font-size: 1.1rem;
+    color: var(--rust);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--warm);
+    border: 1.5px solid var(--blush);
+    border-radius: 100px;
+    padding: 0.4rem 1.2rem;
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeSlideDown 0.8s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--deep);
+    opacity: 0;
+    animation: fadeSlideDown 0.9s 0.6s forwards;
+  }
+  .hero-title span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    color: var(--rust);
+    margin-top: 0.8rem;
+    opacity: 0;
+    animation: fadeSlideDown 0.9s 0.9s forwards;
+  }
+
+  .scroll-hint {
+    position: absolute; bottom: 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    opacity: 0;
+    animation: fadeSlideDown 1s 1.5s forwards, pulse 2s 2.5s ease-in-out infinite;
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  }
+  .scroll-hint::after {
+    content: '↓';
+    font-size: 1.2rem;
+  }
+
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.7; }
+    50%       { opacity: 1; }
+  }
+
+  /* ── POLAROID SECTION ── */
+  .photos-section {
+    padding: 5rem 1.5rem;
+    position: relative; z-index: 1;
+    background: var(--warm);
+  }
+
+  .section-label {
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--rust);
+    text-align: center;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    text-align: center;
+    color: var(--deep);
+    margin-bottom: 3rem;
+    font-style: italic;
+  }
+
+  .polaroid-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .polaroid {
+    background: #fff;
+    padding: 0.9rem 0.9rem 2.5rem;
+    box-shadow: 0 6px 30px rgba(44,26,14,0.13), 0 1px 4px rgba(44,26,14,0.08);
+    transform: rotate(var(--rot));
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    width: 180px;
+    position: relative;
+  }
+  .polaroid:hover {
+    transform: rotate(0deg) scale(1.07);
+    box-shadow: 0 16px 50px rgba(44,26,14,0.22);
+    z-index: 10;
+  }
+
+  .polaroid-img {
+    width: 100%; aspect-ratio: 1;
+    object-fit: cover;
+    background: linear-gradient(135deg, #f0e0cc 0%, #e8c8a8 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    overflow: hidden;
+    position: relative;
+  }
+  .polaroid-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .polaroid-img .placeholder-icon {
+    font-size: 2.2rem;
+    opacity: 0.5;
+    position: absolute;
+  }
+  .polaroid-img video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+  .polaroid-img .placeholder-label {
+    position: absolute; bottom: 0.4rem;
+    font-size: 0.55rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--rust);
+    opacity: 0.8;
+    text-align: center;
+    background: rgba(255,255,255,0.7);
+    width: 100%;
+    padding: 2px 4px;
+  }
+
+  .polaroid-caption {
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+    color: var(--ink);
+    text-align: center;
+    margin-top: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .upload-note {
+    text-align: center;
+    margin-top: 2rem;
+    font-family: 'Caveat', cursive;
+    font-size: 1.05rem;
+    color: var(--rust);
+    opacity: 0.75;
+  }
+  
+  /* ── AUDIO SECTION ── */
+
+.audio-section{
+  padding:5rem 1.5rem;
+  background:var(--cream);
+  position:relative;
+  z-index:1;
+}
+
+.audio-grid{
+  max-width:800px;
+  margin:0 auto;
+  display:grid;
+  gap:1.5rem;
+}
+
+.audio-card{
+  background:#fff;
+  border-radius:20px;
+  padding:1.5rem;
+  box-shadow:0 10px 40px rgba(44,26,14,.08);
+  border:1px solid rgba(212,168,67,.15);
+}
+
+.audio-top{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+
+.vinyl{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:
+  radial-gradient(circle at center,
+  var(--gold) 0 6px,
+  #2c1a0e 7px 100%);
+  position:relative;
+}
+
+.song-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;
+  color:var(--deep);
+}
+
+.song-sub{
+  color:var(--rust);
+  font-family:'Caveat',cursive;
+  font-size:1rem;
+}
+
+.audio-card audio{
+  width:100%;
+}
+
+  /* ── NOTE SECTION ── */
+  .note-section {
+    padding: 6rem 1.5rem;
+    position: relative; z-index: 1;
+    display: flex; justify-content: center;
+  }
+  .note-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4a843' fill-opacity='0.07'%3E%3Ccircle cx='20' cy='20' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .note-card {
+    background: #fff;
+    max-width: 680px;
+    width: 100%;
+    border-radius: 3px;
+    padding: 3.5rem clamp(1.5rem, 5vw, 4rem);
+    box-shadow: 0 2px 0 var(--gold), 0 10px 60px rgba(44,26,14,0.12), inset 0 0 0 1px rgba(212,168,67,0.2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .note-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 3.5rem;
+    width: 1px; height: 100%;
+    background: rgba(192,98,42,0.15);
+  }
+
+  .note-header {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--deep);
+    font-style: italic;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--gold);
+  }
+
+  .note-body {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    line-height: 1.85;
+    color: var(--ink);
+    white-space: pre-line;
+  }
+
+  .note-body .highlight {
+    color: var(--rust);
+    font-weight: 700;
+  }
+
+  .note-signature {
+    margin-top: 2.5rem;
+    text-align: right;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--gold);
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    padding: 5rem 1.5rem;
+    text-align: center;
+    position: relative; z-index: 1;
+    background: var(--deep);
+    color: var(--cream);
+  }
+
+  .closing-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-style: italic;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .closing-text span { color: var(--gold); }
+
+  .closing-sub {
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    color: var(--blush);
+    opacity: 0.8;
+  }
+
+  .stars {
+    margin: 2rem auto 0;
+    font-size: 1.4rem;
+    letter-spacing: 0.4rem;
+    opacity: 0.6;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 0.9; }
+  }
+
+  /* ── PHOTO UPLOAD (hidden file input trick) ── */
+  .polaroid input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 5;
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(30,15,5,0.92);
+    z-index: 100;
+    align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw; max-height: 80vh;
+    border-radius: 3px;
+    box-shadow: 0 0 80px rgba(212,168,67,0.3);
+    animation: popIn 0.35s cubic-bezier(.175,.885,.32,1.275);
+  }
+  .lightbox-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-size: 2rem; color: var(--cream);
+    cursor: pointer; background: none; border: none;
+    transition: color 0.2s;
+  }
+  .lightbox-close:hover { color: var(--gold); }
+  @keyframes popIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  /* ── REVEAL ON SCROLL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating hearts background -->
+<div class="hearts-bg" id="hearts"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✦ 8th June 2025 ✦</div>
+  <h1 class="hero-title">Happy<br/><span>Best Friend</span><br/>Day</h1>
+  <p class="hero-sub">...Bacchi 💛</p>
+  <div class="scroll-hint">scroll down</div>
+</section>
+
+<!-- PHOTOS -->
+<section class="photos-section">
+  <p class="section-label reveal">the girl who causes chaos</p>
+  <h2 class="section-title reveal">A little gallery of Bacchi ✦</h2>
+
+  <div class="polaroid-grid" id="polaroidGrid">
+    <!-- Polaroids inserted by JS -->
+  </div>
+
+</section>
+
+<!-- AUDIO -->
+
+<section class="audio-section">
+  <p class="section-label">Your voice ✦</p>
+  <h2 class="section-title">that remind me of you</h2>
+  <div style="
+text-align:center;
+color:var(--rust);
+font-family:'Caveat',cursive;
+font-size:1.2rem;
+margin-bottom:2rem;">
+💛 Play one of these while reading the letter below
+</div>
+  <div class="audio-grid">
+
+    <div class="audio-card">
+      <div class="audio-top">
+        <div class="vinyl"></div>
+        <div>
+          <div class="song-title">Ek Zindgi</div>
+          <div class="song-sub">Fav. One 💖</div>
+        </div>
+      </div>
+
+      <audio controls>
+        <source src="audio/song1.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="audio-card">
+      <div class="audio-top">
+        <div class="vinyl"></div>
+        <div>
+          <div class="song-title">Sheesha</div>
+          <div class="song-sub">Chatpate Song With Smile✨</div>
+        </div>
+      </div>
+
+      <audio controls>
+        <source src="audio/song2.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+  </div>
+  
+
+</section>
+
+<div style="
+text-align:center;
+font-size:2rem;
+color:var(--gold);
+margin:2rem 0;">
+✦ 💛 ✦
+</div>
+
+<!-- NOTE -->
+<section class="note-section">
+  <div class="note-card reveal">
+    <div class="note-header">A letter from the heart…</div>
+    <div class="note-body" id="noteBody"></div>
+    <div class="note-signature">— KDWI ✦</div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <p class="closing-text reveal">Tu hai toh <span>sab hai,</span><br/>Bacchi. 🌙</p>
+  <p class="closing-sub reveal">Happy Best Friend Day 💛</p>
+  <div class="stars">✦ ✦ ✦</div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">✕</button>
+  <img id="lbImg" src="" alt="" />
+</div>
+
+<script>
+// ── FLOATING HEARTS ──
+const EMOJIS = ['💛','🌸','✨','🤍','💫','🌼','💌'];
+const container = document.getElementById('hearts');
+for (let i = 0; i < 22; i++) {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.fontSize = (0.9 + Math.random() * 1.2) + 'rem';
+  h.style.animationDuration = (8 + Math.random() * 14) + 's';
+  h.style.animationDelay = (Math.random() * 12) + 's';
+  container.appendChild(h);
+}
+
+// ── POLAROID DATA ──
+const captions = [
+  'Cute Smile 😁',
+  'pretty photo, annoying personality 😂',
+  'Drama Queen ✨️',
+  'meri Bacchi 🤍',
+  'ye wali pic 🌼',
+  'iski cute jitni smile h usse jyada pareshan krti h 😅'
+];
+
+const media = [
+  "images/photo1.mp4",
+  "images/photo2.jpg",
+  "images/photo3.mp4",
+  "images/photo4.jpg",
+  "images/photo5.jpg",
+  "images/photo6.jpg"
+];
+
+const rots = [
+  '-3deg',
+  '2deg',
+  '-1.5deg',
+  '3.5deg',
+  '-2.5deg',
+  '1deg'
+];
+
+const grid = document.getElementById('polaroidGrid');
+
+captions.forEach((cap, i) => {
+  const pol = document.createElement('div');
+  pol.className = 'polaroid reveal';
+  pol.style.setProperty('--rot', rots[i % rots.length]);
+
+  const isVideo = media[i].endsWith('.mp4');
+
+  pol.innerHTML = `
+    <div class="polaroid-img">
+      ${
+        isVideo
+          ? `<video autoplay muted loop playsinline>
+               <source src="${media[i]}" type="video/mp4">
+             </video>`
+          : `<img src="${media[i]}" alt="${cap}" onclick="openLightbox('${media[i]}')">`
+      }
+    </div>
+    <div class="polaroid-caption">${cap}</div>
+  `;
+
+  grid.appendChild(pol);
+});
+
+
+// ── LIGHTBOX ──
+const lightbox = document.getElementById('lightbox');
+const lbImg    = document.getElementById('lbImg');
+document.getElementById('lbClose').onclick = () => lightbox.classList.remove('open');
+lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+function openLightbox(src) {
+  lbImg.src = src;
+  lightbox.classList.add('open');
+}
+
+// ── NOTE TEXT ──
+const rawNote = `Happy Best Friend Day, Bacchi
+
+Sach kahun to tu meri life ke un logon mein se hai jinke bina sab kuch thoda adhoora sa lagta hai. Teri bakbak, tere random mood swings, tera "mujhe farak nahi padta" bolkar bhi sabse zyada farak padna, aur bina wajah mujhe tang karna — ab meri daily routine ka part ban chuka hai.
+
+Thank you har us moment ke liye jab tune saath diya, samjha aur bina kisi reason ke bhi mood theek kar diya. Waise kabhi-kabhi lagta hai ki tujhe Nobel Prize milna chahiye — itni confidence ke saath galat hone ke liye. 😄
+
+Tu thodi si pagal hai, thodi si ziddi hai, thodi si drama queen hai... par jo bhi hai, mast hai. Aur haan, itna attitude bhi theek nahi hota Bacchi, warna log sach mein sochne lagte hain ki tu VIP hai.
+
+Bas hamesha khush reh, haste reh aur apni ye ajeeb si personality kabhi mat badalna. Kyuki honestly, isi version ki aadat ho gayi hai.
+
+Happy Best Friend Day, Bacchi! 💛`;
+
+document.getElementById('noteBody').textContent = rawNote;
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+  </html>
