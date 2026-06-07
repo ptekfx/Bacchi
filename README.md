@@ -2,6 +2,10 @@
 
 A special friendship website created as a gift from KDWI to Bacchi.
 
+## 🌐 Live Website
+
+[Visit Website](https://bacchi.ptekfx.workers.dev)
+
 ## ✨ About
 
 This website was made to celebrate friendship, memories, laughter, and all the moments that make a bond special. It brings together photos, videos, messages, voice notes, and memories in one place.
