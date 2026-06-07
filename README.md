@@ -4,7 +4,7 @@ A special friendship website created as a gift from KDWI to Bacchi.
 
 ## 🌐 Live Website
 
-[Visit Website](https://bacchi.ptekfx.workers.dev)
+[Visit Website](https://bacchi.vashu.workers.dev)
 
 ## ✨ About
 
